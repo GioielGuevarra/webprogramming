@@ -1,3 +1,8 @@
+<?php
+require_once '../tools/restrict.php';
+?>
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">

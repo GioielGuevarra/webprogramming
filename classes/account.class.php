@@ -69,6 +69,22 @@ class Account{
         return false;
     }
 
+    function showAll($keyword='') {
+        $sql = "SELECT * FROM account WHERE (first_name LIKE CONCAT('%', :keyword, '%') OR last_name LIKE CONCAT('%', :keyword, '%') OR role LIKE CONCAT('%', :keyword, '%')) GROUP BY id ORDER BY id ASC;";
+
+        $query = $this->db->connect()->prepare($sql);
+
+        $query->bindParam(':keyword', $keyword);
+
+        $data = null; 
+
+        if ($query->execute()) {
+            $data = $query->fetchAll(); 
+        }
+
+        return $data; 
+    }
+
     function fetch($username){
         $sql = "SELECT * FROM account WHERE username = :username LIMIT 1;";
         $query = $this->db->connect()->prepare($sql);
