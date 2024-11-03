@@ -40,6 +40,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $priceErr = 'Price should be a number.';
     } else if ($price < 1){
         $priceErr = 'Price must be greater than 0.';
+    } else if($_FILES['product_image']['size'] > 5 * 1024 * 1024){
+        $imageErr = 'Image must not exceed the file size of 5MB.';
     }
 
     $imageFileType = strtolower(pathinfo($image, PATHINFO_EXTENSION));
